@@ -4,7 +4,7 @@
      <ul class="sidebar-nav" id="sidebar-nav">
 
          <li class="nav-item">
-             <a class="nav-link " href="{{'/'}}">
+             <a class="nav-link @if (Request::segment(2) != 'dashboard') collapsed @endif" href="{{ route('admin.dashboard') }}">
                  <i class="bi bi-grid"></i>
                  <span>Dashboard</span>
              </a>
@@ -33,14 +33,15 @@
         <li class="nav-heading">Pages</li> --}}
 
          <li class="nav-item">
-             <a class="nav-link collapsed" href="users-profile.html">
+             <a class="nav-link @if (Request::segment(2) != 'user') collapsed @endif" href="users-profile.html">
                  <i class="bi bi-person"></i>
                  <span>User</span>
              </a>
          </li><!-- End Profile Page Nav -->
 
          <li class="nav-item">
-             <a class="nav-link collapsed" href="pages-register.html">
+
+             <a class="nav-link @if (Request::segment(2) != 'roles') collapsed @endif" href="{{ route('roles') }}">
                  <i class="bi bi-card-list"></i>
                  <span>Role</span>
              </a>
