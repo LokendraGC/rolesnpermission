@@ -25,44 +25,15 @@
                         <form action="{{ route('update.role', $getRecord['id']) }}" method="POST">
                             @csrf
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">Role</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" value="{{ $getRecord['name'] }}"
+                                    <input type="text" name="role" value="{{ $getRecord['role'] }}"
                                         class="form-control">
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" name="email" value="{{ $getRecord['email'] }}"
-                                        class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" name="password" class="form-control">
-                                </div>
-                            </div>
 
                             <div class="row mb-3">
-                                <label for="role" class="col-sm-2 col-form-label">Roles</label>
-                                <div class="col-sm-10">
-                                    <select name="role" id="role" class="form-control">
-                                        <option value="">Select Roles</option>
-                                        <option value="admin" {{ $getRecord['role'] == 'admin' ? 'selected' : '' }}>Admin
-                                        </option>
-                                        <option value="user" {{ $getRecord['role'] == 'user' ? 'selected' : '' }}>User
-                                        </option>
-                                        <option value="employee" {{ $getRecord['role'] == 'employee' ? 'selected' : '' }}>
-                                            Employee</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Submit Button</label>
+                                <label class="col-sm-2 col-form-label">Update Role</label>
                                 <div class="col-sm-10">
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>

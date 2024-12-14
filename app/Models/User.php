@@ -23,6 +23,19 @@ class User extends Authenticatable
         'password',
     ];
 
+    static public function getRecord()
+    {
+        return User::get();
+    }
+
+    static public function getRole(){
+        return Role::get();
+    }
+
+    static public function getSingle($id)
+    {
+        return User::find($id);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,19 +19,17 @@ class RoleController extends Controller
 
     public function addRole()
     {
-        return view('backend.roles.add-roles');
+        $permission = Permission::getRecord();
+        return view('backend.roles.add-roles', ['permission' => $permission]);
     }
     public function insert(Request $request)
     {
         $user = new Role;
-        $user->name = $request->name;
-        $user->email = $request->email;
         $user->role = $request->role;
-        $user->password = Hash::make($request->password);
 
         $user->save();
 
-        return redirect()->route('roles')->with('success','creates Successfully');
+        return redirect()->route('roles')->with('success', 'creates Successfully');
     }
 
     public function editRole($id)
@@ -42,18 +41,16 @@ class RoleController extends Controller
     public function updateRole(Request $request, $id)
     {
         $user = Role::getSingle($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
         $user->role = $request->role;
-        $user->password = Hash::make($request->password);
 
         $user->save();
 
-        return redirect()->route('roles')->with('success','Updated Successfully');
+        return redirect()->route('roles')->with('success', 'Updated Successfully');
     }
 
-    public function deleteRole($id){
-            Role::destroy($id);
-            return redirect()->route('roles')->with('success','Deleted Successfully');
+    public function deleteRole($id)
+    {
+        Role::destroy($id);
+        return redirect()->route('roles')->with('success', 'Deleted Successfully');
     }
 }

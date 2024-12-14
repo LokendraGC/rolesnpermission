@@ -17,24 +17,26 @@
 
             <div class="col-lg-12">
                 <div class="text-end pb-4">
-                    <button class="btn btn-primary"><a href="{{ route('addRole') }}" style="color: white">Add
-                            Role</a></button>
+                    <button class="btn btn-primary"><a href="{{ route('addUser') }}" style="color: white">Add
+                            User</a></button>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <div>
-                            <h5 class="card-title">Roles</h5>
+                            <h5 class="card-title">Users</h5>
                         </div>
 
                         <!-- Table with stripped rows -->
                         @if (session('success'))
                             <div class="text-success text-center mt-4">{{ session('success') }}</div>
                         @endif
-                        @if ($roleRecord)
+                        @if ($userRecord)
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th scope="col">S.N</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Role</th>
                                         <th scope="col">Created At</th>
                                         <th scope="col">Action</th>
@@ -42,13 +44,15 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($roleRecord as $item)
+                                    @foreach ($userRecord as $item)
                                         <tr>
                                             <th scope="row">{{ $item->id }}</th>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
                                             <td>{{ $item->role }}</td>
                                             <td>{{ $item->created_at }}</td>
-                                            <td><a href="{{ route('edit.role', $item->id) }}">Edit</a> <a
-                                                    href="{{ route('delete.role', $item->id) }}"
+                                            <td><a href="{{ route('edit.user', $item->id) }}">Edit</a> <a
+                                                    href="{{ route('delete.user', $item->id) }}"
                                                     style="color: red">Delete</a>
                                             </td>
                                         </tr>
@@ -61,6 +65,8 @@
 
                     </div>
                 </div>
+
+
 
             </div>
         </div>

@@ -33,9 +33,9 @@
         <li class="nav-heading">Pages</li> --}}
 
          <li class="nav-item">
-             <a class="nav-link @if (Request::segment(2) != 'user') collapsed @endif" href="users-profile.html">
+             <a class="nav-link @if (Request::segment(2) != 'users') collapsed @endif" href="{{ route('show.users') }}">
                  <i class="bi bi-person"></i>
-                 <span>User</span>
+                 <span>Users</span>
              </a>
          </li><!-- End Profile Page Nav -->
 
@@ -48,11 +48,19 @@
          </li><!-- End Register Page Nav -->
 
          <li class="nav-item">
-             <a class="nav-link collapsed" href="pages-login.html">
-                 <i class="bi bi-box-arrow-in-right"></i>
+             <a class="nav-link @if (Request::segment(2) != 'products') collapsed @endif" href="{{ route('products') }}">
+                <i class="bi bi-bag-dash-fill"></i>
                  <span>Product</span>
              </a>
          </li><!-- End Login Page Nav -->
+
+         <li class="nav-item">
+             <a class="nav-link @if (Request::segment(2) != 'categories') collapsed @endif" href="{{ route('categories') }}">
+                <i class="bi bi-basket2-fill"></i>
+                 <span>Category</span>
+             </a>
+         </li><!-- End Login Page Nav -->
+
      </ul>
 
  </aside><!-- End Sidebar-->

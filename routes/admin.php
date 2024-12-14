@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index']);
@@ -20,4 +21,18 @@ Route::group(['middleware' => 'userAdmin'], function () {
     Route::get('dashboard/edit-role/{id}', [RoleController::class, 'editRole'])->name('edit.role');
     Route::post('dashboard/update-role/{id}', [RoleController::class, 'updateRole'])->name('update.role');
     Route::get('dashboard/delete-role/{id}', [RoleController::class, 'deleteRole'])->name('delete.role');
+
+    // users
+    Route::get('dashboard/users', [UserController::class, 'index'])->name('show.users');
+    Route::get('dashboard/add-user', [UserController::class, 'addUser'])->name('addUser');
+    Route::post('dashboard/store-user', [UserController::class, 'insert'])->name('add.user');
+    Route::get('dashboard/edit-user/{id}', [UserController::class, 'editUser'])->name('edit.user');
+    Route::post('dashboard/update-user/{id}', [UserController::class, 'updateUser'])->name('update.user');
+    Route::get('dashboard/delete-user/{id}', [UserController::class, 'deleteUser'])->name('delete.user');
+
+    // products
+    Route::view('dashboard/products', 'backend.products.index')->name('products');
+
+    // categories
+    Route::view('dashboard/categories', 'backend.categories.index')->name('categories');
 });
