@@ -59,7 +59,7 @@
                                                     <div class="col-md-3">
                                                         <label for="permission_{{ $item['id'] }}">
                                                             <input type="checkbox" {{ $checked }}
-                                                                id="permission_{{ $item['id'] }}" name="permission[]"
+                                                                id="permission_{{ $item['id'] }}" name="permission_id[]"
                                                                 value="{{ $item['id'] }}">
                                                             {{ $item['name'] }}
                                                         </label>

@@ -29,15 +29,24 @@ class UserController extends Controller
     }
     public function insert(Request $request)
     {
-        $user = new User;
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|email|unique:users',
+        //     'password' => 'required|min:6',
+        //     'role_id' => 'required|exists:roles,id', // Validate role_id
+        // ]);
+
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role_id = $request->role_id;
 
         $user->save();
 
-        return redirect()->route('show.users')->with('success', 'creates Successfully');
+        return redirect()->route('show.users')->with('success', 'User created successfully!');
     }
+
 
     public function editUser($id)
     {
@@ -53,6 +62,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role_id = $request->role_id;
 
         $user->save();
 

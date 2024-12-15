@@ -21,14 +21,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id'
     ];
 
     static public function getRecord()
     {
-        return User::get();
+        return User::select('users.*', 'roles.role as role_name')
+            ->join('roles', 'roles.id', '=', 'users.role_id')
+            ->orderBy('users.id', 'desc')
+            ->get();
     }
 
-    static public function getRole(){
+
+    static public function getRole()
+    {
         return Role::get();
     }
 

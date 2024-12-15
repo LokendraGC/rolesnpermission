@@ -26,4 +26,12 @@ class RoleHasPermission extends Model
     {
         return RoleHasPermission::where('role_id', '=', $role_id)->get();
     }
+
+    static function getPermissions($slug,$role_id){
+            return RoleHasPermission::select('role_has_permissions.id')
+            ->join('permissions','permissions.id','=','role_has_permissions.permission_id')
+            ->where('role_id','=',$role_id)
+            ->where('slug','=',$slug)
+            ->count();
+    }
 }

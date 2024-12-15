@@ -30,6 +30,7 @@
                         @if (session('success'))
                             <div class="text-success text-center mt-4">{{ session('success') }}</div>
                         @endif
+
                         @if ($userRecord)
                             <table class="table table-striped">
                                 <thead>
@@ -49,9 +50,7 @@
                                             <th scope="row">{{ $item->id }}</th>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
-                                            @foreach ($roles as $role)
-                                                <td>{{ $role->role }}</td>
-                                            @endforeach
+                                            <td>{{ $item->role_name }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td><a href="{{ route('edit.user', $item->id) }}">Edit</a> <a
                                                     href="{{ route('delete.user', $item->id) }}"

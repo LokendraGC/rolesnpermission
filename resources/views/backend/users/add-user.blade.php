@@ -32,6 +32,9 @@
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
+                            @if (session('error'))
+                                <div class="text-danger text-center mt-4">{{ session('success') }}</div>
+                            @endif
                             <div class="row mb-3">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
@@ -49,10 +52,10 @@
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Roles</label>
                                 <div class="col-sm-10">
                                     @if ($roles)
-                                        <select name="role" id="role">
+                                        <select name="role_id" id="role">
                                             <option value="default">Select Roles</option>
                                             @foreach ($roles as $role)
-                                                <option value="admin">{{ $role->role }}</option>
+                                                <option value="{{ $role->id }}">{{ $role->role }}</option>
                                             @endforeach
                                         </select>
                                     @endif

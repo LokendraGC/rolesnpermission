@@ -25,6 +25,10 @@ class RoleController extends Controller
     }
     public function insert(Request $request)
     {
+        $request->validate([
+            'role' => 'required'
+        ]);
+
         $user = new Role;
         $user->role = $request->role;
         $user->save();
@@ -45,10 +49,18 @@ class RoleController extends Controller
 
     public function updateRole(Request $request, $id)
     {
+        // dd($request->all());
+
+        $request->validate([
+            'role' => 'required'
+        ]);
+
         $user = Role::getSingle($id);
         $user->role = $request->role;
 
         $user->save();
+
+        RoleHasPermission::insertUpdateRecord($request->permission_id, $user->id);
 
         return redirect()->route('roles')->with('success', 'Updated Successfully');
     }
