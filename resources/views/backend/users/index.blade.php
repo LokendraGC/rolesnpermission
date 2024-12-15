@@ -14,12 +14,13 @@
 
     <section class="section">
         <div class="row">
-
             <div class="col-lg-12">
-                <div class="text-end pb-4">
-                    <button class="btn btn-primary"><a href="{{ route('addUser') }}" style="color: white">Add
-                            User</a></button>
-                </div>
+                @if (!empty($PermissionAdd))
+                    <div class="text-end pb-4">
+                        <button class="btn btn-primary"><a href="{{ route('addUser') }}" style="color: white">Add
+                                User</a></button>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <div>
@@ -52,9 +53,14 @@
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->role_name }}</td>
                                             <td>{{ $item->created_at }}</td>
-                                            <td><a href="{{ route('edit.user', $item->id) }}">Edit</a> <a
-                                                    href="{{ route('delete.user', $item->id) }}"
-                                                    style="color: red">Delete</a>
+                                            <td>
+                                                @if (!empty($PermissionEdit))
+                                                    <a href="{{ route('edit.user', $item->id) }}">Edit</a>
+                                                @endif
+                                                @if (!empty($PermissionDelete))
+                                                    <a href="{{ route('delete.user', $item->id) }}"
+                                                        style="color: red">Delete</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
