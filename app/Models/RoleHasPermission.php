@@ -13,7 +13,8 @@ class RoleHasPermission extends Model
 
     static public function insertUpdateRecord(array $permission_ids, int $role_id)
     {
-        // RoleHasPermission::where('role_id', '=', $role_id)->delete();
+        RoleHasPermission::where('role_id', '=', $role_id)->delete();
+
         foreach ($permission_ids as $permission_id) {
             $permission = new RoleHasPermission();
             $permission->permission_id = $permission_id;
@@ -27,11 +28,12 @@ class RoleHasPermission extends Model
         return RoleHasPermission::where('role_id', '=', $role_id)->get();
     }
 
-    static function getPermissions($slug,$role_id){
-            return RoleHasPermission::select('role_has_permissions.id')
-            ->join('permissions','permissions.id','=','role_has_permissions.permission_id')
-            ->where('role_id','=',$role_id)
-            ->where('slug','=',$slug)
+    static function getPermissions($slug, $role_id)
+    {
+        return RoleHasPermission::select('role_has_permissions.id')
+            ->join('permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
+            ->where('role_id', '=', $role_id)
+            ->where('slug', '=', $slug)
             ->count();
     }
 }

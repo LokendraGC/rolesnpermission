@@ -16,10 +16,12 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <div class="text-end pb-4">
-                    <button class="btn btn-primary"><a href="{{ route('addRole') }}" style="color: white">Add
-                            Role</a></button>
-                </div>
+                @if (!empty($PermissionAdd))
+                    <div class="text-end pb-4">
+                        <button class="btn btn-primary"><a href="{{ route('addRole') }}" style="color: white">Add
+                                Role</a></button>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <div>
@@ -47,9 +49,14 @@
                                             <th scope="row">{{ $item->id }}</th>
                                             <td>{{ $item->role }}</td>
                                             <td>{{ $item->created_at }}</td>
-                                            <td><a href="{{ route('edit.role', $item->id) }}">Edit</a> <a
-                                                    href="{{ route('delete.role', $item->id) }}"
-                                                    style="color: red">Delete</a>
+                                            <td>
+                                                @if (!empty($PermissionEdit))
+                                                    <a href="{{ route('edit.role', $item->id) }}">Edit</a>
+                                                @endif
+                                                @if (!empty($PermissionDelete))
+                                                    <a href="{{ route('delete.role', $item->id) }}"
+                                                        style="color: red">Delete</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
