@@ -13,6 +13,12 @@
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+    <style>
+        .footer#footer {
+            border-top: none;
+        }
+    </style>
+
     @yield('header-css')
 
     @include('backend.common.styles')
@@ -28,7 +34,7 @@
     <main id="main" class="main">
 
       @yield('main-content')
-      
+
     </main>
 
     @include('backend.layouts.footer')

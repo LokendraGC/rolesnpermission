@@ -49,7 +49,9 @@
                                             <th scope="row">{{ $item->id }}</th>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
-                                            <td>{{ $item->role }}</td>
+                                            @foreach ($roles as $role)
+                                                <td>{{ $role->role }}</td>
+                                            @endforeach
                                             <td>{{ $item->created_at }}</td>
                                             <td><a href="{{ route('edit.user', $item->id) }}">Edit</a> <a
                                                     href="{{ route('delete.user', $item->id) }}"

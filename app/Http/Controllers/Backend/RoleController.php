@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\RoleHasPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
@@ -26,17 +27,21 @@ class RoleController extends Controller
     {
         $user = new Role;
         $user->role = $request->role;
-
         $user->save();
+
+        RoleHasPermission::insertUpdateRecord($request->permission_id, $user->id);
 
         return redirect()->route('roles')->with('success', 'creates Successfully');
     }
 
     public function editRole($id)
     {
-        $data['getRecord'] = Role::getSingle($id);
-        return view('backend.roles.edit-roles', $data);
+        $permission = Permission::getRecord();
+        $getRecord = Role::getSingle($id);
+        $permission_data = RoleHasPermission::getPermission($id);
+        return view('backend.roles.edit-roles', ['getRecord' => $getRecord, 'permission' => $permission, 'permission_data' => $permission_data]);
     }
+
 
     public function updateRole(Request $request, $id)
     {
